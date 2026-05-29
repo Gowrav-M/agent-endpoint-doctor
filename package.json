@@ -1,0 +1,68 @@
+{
+  "name": "agent-endpoint-doctor",
+  "version": "0.1.0",
+  "description": "Local-first compatibility tester for OpenAI-compatible endpoints used by AI coding agents.",
+  "type": "module",
+  "main": "dist/cli.js",
+  "exports": {
+    ".": "./dist/cli.js"
+  },
+  "bin": {
+    "agent-endpoint-doctor": "dist/cli.js"
+  },
+  "files": [
+    "dist",
+    "examples",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "scripts": {
+    "build": "tsc -p tsconfig.json",
+    "dev": "tsx src/cli.ts",
+    "lint": "eslint .",
+    "test": "vitest run",
+    "typecheck": "tsc -p tsconfig.json --noEmit"
+  },
+  "keywords": [
+    "ai-agents",
+    "openai-compatible",
+    "llm",
+    "cursor",
+    "continue",
+    "opencode",
+    "tool-calling",
+    "streaming",
+    "developer-tools",
+    "diagnostics"
+  ],
+  "author": "Gowrav-M",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Gowrav-M/agent-endpoint-doctor.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Gowrav-M/agent-endpoint-doctor/issues"
+  },
+  "homepage": "https://github.com/Gowrav-M/agent-endpoint-doctor#readme",
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=22.0.0"
+  },
+  "dependencies": {
+    "commander": "^14.0.2",
+    "zod": "^4.1.13"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.1",
+    "@types/node": "^24.10.1",
+    "eslint": "^9.39.1",
+    "tsx": "^4.21.0",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.48.0",
+    "vitest": "^4.0.14"
+  }
+}

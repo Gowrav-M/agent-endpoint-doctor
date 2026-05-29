@@ -1,0 +1,86 @@
+{
+  "profile": {
+    "name": "offline-localhost-demo",
+    "baseUrl": "http://localhost:1234/v1",
+    "model": "qwen3-coder-demo",
+    "apiKeyEnv": "OPENAI_COMPATIBLE_API_KEY",
+    "providerHint": "offline fixture"
+  },
+  "generatedAt": "2026-05-29T00:00:00.000Z",
+  "results": [
+    {
+      "capability": "models",
+      "status": "pass",
+      "severity": "info",
+      "latencyMs": 14,
+      "statusCode": 200,
+      "message": "Endpoint lists models.",
+      "evidence": { "fixture": true }
+    },
+    {
+      "capability": "chat",
+      "status": "pass",
+      "severity": "info",
+      "latencyMs": 220,
+      "statusCode": 200,
+      "message": "Endpoint accepted a chat completion request.",
+      "evidence": { "fixture": true }
+    },
+    {
+      "capability": "streaming",
+      "status": "pass",
+      "severity": "info",
+      "latencyMs": 241,
+      "statusCode": 200,
+      "message": "Endpoint accepted request and returned an event stream.",
+      "evidence": { "fixture": true }
+    },
+    {
+      "capability": "tools",
+      "status": "pass",
+      "severity": "info",
+      "latencyMs": 260,
+      "statusCode": 200,
+      "message": "Endpoint accepted an OpenAI-style tools request.",
+      "evidence": { "fixture": true }
+    },
+    {
+      "capability": "streaming_tools",
+      "status": "fail",
+      "severity": "high",
+      "latencyMs": 301,
+      "statusCode": 400,
+      "message": "Endpoint accepted streaming or tools separately but failed when combined.",
+      "evidence": { "fixture": true },
+      "recommendation": "Disable streaming for tool-heavy agent workflows or use a compatibility proxy."
+    },
+    {
+      "capability": "json_mode",
+      "status": "pass",
+      "severity": "info",
+      "latencyMs": 212,
+      "statusCode": 200,
+      "message": "Endpoint accepted JSON mode request.",
+      "evidence": { "fixture": true }
+    },
+    {
+      "capability": "embeddings",
+      "status": "fail",
+      "severity": "warning",
+      "latencyMs": 90,
+      "statusCode": 404,
+      "message": "Chat model does not expose /embeddings.",
+      "evidence": { "fixture": true },
+      "recommendation": "Use a dedicated embedding model for retrieval."
+    }
+  ],
+  "findings": [],
+  "summary": {
+    "decision": "review",
+    "pass": 5,
+    "warn": 0,
+    "fail": 2,
+    "skip": 0,
+    "agentReadinessScore": 82
+  }
+}
