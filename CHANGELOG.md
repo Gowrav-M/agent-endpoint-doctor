@@ -4,4 +4,4 @@
 
 - Initial local-first OpenAI-compatible endpoint compatibility tester.
 - Added offline demo, live endpoint test, matrix, config, and report commands.
-- Added tests for chat, streaming, tool calling, streaming tools, JSON mode, embeddings, matrix scoring, and report rendering.
+- Added tests for chat, streaming, tool calling, streaming tools, JSON mode, Responses API, embeddings, matrix scoring, and report rendering.

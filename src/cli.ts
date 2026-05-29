@@ -77,7 +77,8 @@ program
       await client.testStreaming(),
       await client.testTools(false),
       await client.testTools(true),
-      await client.testJsonMode()
+      await client.testJsonMode(),
+      await client.testResponses()
     ];
     if (options.skipEmbeddings !== true) results.push(await client.testEmbeddings());
     const matrix = buildMatrix(profile, results);

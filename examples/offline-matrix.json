@@ -64,6 +64,16 @@
       "evidence": { "fixture": true }
     },
     {
+      "capability": "responses",
+      "status": "fail",
+      "severity": "warning",
+      "latencyMs": 111,
+      "statusCode": 404,
+      "message": "Endpoint does not implement /responses.",
+      "evidence": { "fixture": true },
+      "recommendation": "Force /chat/completions in clients that support it."
+    },
+    {
       "capability": "embeddings",
       "status": "fail",
       "severity": "warning",
@@ -79,8 +89,8 @@
     "decision": "review",
     "pass": 5,
     "warn": 0,
-    "fail": 2,
+    "fail": 3,
     "skip": 0,
-    "agentReadinessScore": 82
+    "agentReadinessScore": 76
   }
 }

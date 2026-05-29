@@ -42,6 +42,31 @@ describe("endpoint client", () => {
     });
     const result = await client.testTools();
     expect(result.status).toBe("fail");
-    expect(result.recommendation).toContain("OpenAI-style tools");
+    expect(result.recommendation).toContain("OpenAI-style tool_calls");
+  });
+
+  it("requires actual tool_calls shape for tool compatibility", async () => {
+    const fetchFn = async () => new Response(JSON.stringify({
+      choices: [{
+        message: {
+          tool_calls: [{
+            id: "call_1",
+            type: "function",
+            function: { name: "endpoint_doctor_ping", arguments: "{\"ok\":true}" }
+          }]
+        }
+      }]
+    }), { status: 200, headers: { "content-type": "application/json" } });
+    const client = new EndpointClient({
+      profile: {
+        name: "test",
+        baseUrl: "http://localhost:1234/v1",
+        model: "qwen3"
+      },
+      fetchFn
+    });
+    const result = await client.testTools();
+    expect(result.status).toBe("pass");
+    expect(result.message).toContain("tool_calls");
   });
 });

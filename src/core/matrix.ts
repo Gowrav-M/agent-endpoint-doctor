@@ -44,6 +44,7 @@ export function scoreResults(results: CapabilityResult[]): number {
     tools: 20,
     streaming_tools: 15,
     json_mode: 10,
+    responses: 8,
     embeddings: 3,
     vision: 2
   };
@@ -65,6 +66,7 @@ function buildFindings(results: CapabilityResult[]): EndpointFinding[] {
   const tools = byCapability.get("tools");
   const streamingTools = byCapability.get("streaming_tools");
   const jsonMode = byCapability.get("json_mode");
+  const responses = byCapability.get("responses");
 
   if (chat?.status === "fail") {
     findings.push(EndpointFindingSchema.parse({
@@ -104,6 +106,16 @@ function buildFindings(results: CapabilityResult[]): EndpointFinding[] {
       severity: "warning",
       message: "Structured output failures can break evals, config generation, and automated review workflows.",
       recommendation: "Use tool schemas or provider-specific structured-output settings when JSON mode is unavailable."
+    }));
+  }
+  if (responses?.status === "fail") {
+    findings.push(EndpointFindingSchema.parse({
+      id: "responses.failed",
+      title: "Responses API failed",
+      status: "warn",
+      severity: "warning",
+      message: "Some modern agent clients use /responses for reasoning, summaries, or tool workflows.",
+      recommendation: "Force /chat/completions in the client when possible, or use a provider that supports /responses."
     }));
   }
   if (findings.length === 0) {

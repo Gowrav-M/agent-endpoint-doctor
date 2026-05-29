@@ -7,6 +7,7 @@ export const CapabilitySchema = z.enum([
   "tools",
   "streaming_tools",
   "json_mode",
+  "responses",
   "embeddings",
   "vision"
 ]);

@@ -12,6 +12,7 @@
   },
   "files": [
     "dist",
+    "docs/research.md",
     "examples",
     "README.md",
     "LICENSE",

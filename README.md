@@ -20,6 +20,7 @@ The demo is offline and writes reports under `.endpoint-doctor/`.
 - OpenAI-style tool calling
 - streaming tool calls
 - JSON mode / structured output request shape
+- `/v1/responses`
 - `/v1/embeddings`
 
 ## Quick Start
@@ -62,11 +63,14 @@ Agent workflows fail in places simple chat demos never touch.
 | chat returns text | streaming works without hanging |
 | tool schema is accepted | tool calls stream in a client-readable format |
 | JSON is requested | output is usable by evals and automation |
+| `/responses` exists | modern clients can use reasoning/response workflows |
 | endpoint is “compatible” | Cursor/Continue/OpenCode can actually use it |
 
 The tool answers:
 
 > Can I safely point my coding agent at this endpoint?
+
+Research notes: [docs/research.md](docs/research.md)
 
 ## Output
 
