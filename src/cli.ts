@@ -14,6 +14,7 @@ import {
   type CapabilityResult,
   type CompatibilityMatrix
 } from "./core/schemas.js";
+import { createEndpointTrustEvidence, trustEvidencePath } from "./core/trustEvidence.js";
 import { buildReport, renderHtml, renderMarkdown } from "./report/render.js";
 
 const MatrixArraySchema = z.array(CompatibilityMatrixSchema);
@@ -131,6 +132,19 @@ program
     console.log(`JSON: ${ctx.paths.reportJson}`);
     console.log(`Markdown: ${ctx.paths.reportMarkdown}`);
     console.log(`HTML: ${ctx.paths.reportHtml}`);
+  });
+
+program
+  .command("evidence")
+  .description("Write normalized Agent Trust Center evidence from the latest endpoint compatibility matrix.")
+  .action(async () => {
+    const ctx = await commandContext();
+    await ensureDirs(ctx.paths);
+    const evidence = await createEndpointTrustEvidence({ paths: ctx.paths, version: ctx.version });
+    const outputPath = trustEvidencePath(ctx.paths);
+    await writeJsonFile(outputPath, evidence);
+    console.log(`Decision: ${evidence.decision.toUpperCase()}`);
+    console.log(`Trust evidence: ${outputPath}`);
   });
 
 program.showHelpAfterError();
